@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+    salamanaplikasi3:
+        image: salamanaplikasi
+        ports:
+            - 8084:80
+        volumes:
+            - /home/public/ss3/:/var/www/html/ss/public
+        links:
+            - 'mysql'
+        container_name: salamanaplikasi3
+    mysql:
+        container_name: mysql-database
+        image: mysql:8.0.19
+        volumes:
+            - ./db:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
